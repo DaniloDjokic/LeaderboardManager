@@ -15,7 +15,13 @@ namespace LeaderboardManager
 
         static MockData()
         {
-            leaderboards.Add(new Leaderboard { Id = 1, Name = "First", Password = "penicbagomal", Key = "asdfg", Algorithm = CrypotAlgo.RC4, Format = "zxc" });
+            Leaderboard leaderboard = new Leaderboard { Id = 1, Name = "First", Password = "penicbagomal", Key = "asdfg", Algorithm = CrypotAlgo.RC4, Format = "zxc" };
+            List<Entry> entries = new List<Entry>();
+            entries.Add(new Entry { Id = 1, Name = "DjiDji", Points = 100, Message = "Abe" });
+            entries.Add(new Entry { Id = 2, Name = "Djolo", Points = 81.9, Message = "Tebro" });
+            entries.Add(new Entry { Id = 3, Name = "Koki", Points = 50.5, Message = "BeTebro" });
+            leaderboard.Entries = entries;
+            leaderboards.Add(leaderboard);
         }
     }
 }

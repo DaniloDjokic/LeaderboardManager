@@ -29,5 +29,12 @@ namespace LeaderboardManager
             AddForm addForm = new AddForm();
             addForm.ShowDialog();
         }
+
+        private void leaderboardsListBox_Click(object sender, EventArgs e)
+        {
+            int index = this.leaderboardsListBox.IndexFromPoint((e as MouseEventArgs).Location);
+            LeaderboardForm form = new LeaderboardForm(MockData.leaderboards[index]);
+            form.ShowDialog();
+        }
     }
 }

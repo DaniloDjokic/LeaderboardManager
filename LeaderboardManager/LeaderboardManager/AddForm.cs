@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeaderboardManager.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,20 @@ namespace LeaderboardManager
 
             algorithmDropdown.DataSource = Enum.GetValues(typeof(CrypotAlgo));
             algorithmDropdown.SelectedItem = CrypotAlgo.RC4;
+
+            formatTooltip.InitialDelay = 20;
+            formatTooltip.SetToolTip(formatTxt, "Text for tooltip");
+        }
+
+        public AddForm(Leaderboard leaderboard)
+        {
+            InitializeComponent();
+
+            passwordTxt.Text = leaderboard.Password;
+            keyTxt.Text = leaderboard.Key;
+            algorithmDropdown.DataSource = Enum.GetValues(typeof(CrypotAlgo));
+            algorithmDropdown.SelectedItem = leaderboard.Algorithm;
+            formatTxt.Text = leaderboard.Format;
 
             formatTooltip.InitialDelay = 20;
             formatTooltip.SetToolTip(formatTxt, "Text for tooltip");

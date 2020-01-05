@@ -32,27 +32,30 @@
             this.backBtn = new System.Windows.Forms.Button();
             this.codeLbl = new System.Windows.Forms.Label();
             this.codeTxt = new System.Windows.Forms.TextBox();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(12, 113);
+            this.confirmBtn.Location = new System.Drawing.Point(12, 155);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(131, 51);
             this.confirmBtn.TabIndex = 0;
             this.confirmBtn.Text = "CONFIRM";
             this.confirmBtn.UseVisualStyleBackColor = true;
+            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
             // 
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(194, 113);
+            this.backBtn.Location = new System.Drawing.Point(194, 155);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(132, 51);
             this.backBtn.TabIndex = 1;
             this.backBtn.Text = "BACK";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // codeLbl
             // 
@@ -71,11 +74,22 @@
             this.codeTxt.Size = new System.Drawing.Size(122, 22);
             this.codeTxt.TabIndex = 3;
             // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLbl.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLbl.Location = new System.Drawing.Point(53, 102);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(0, 29);
+            this.errorLbl.TabIndex = 4;
+            // 
             // AuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 176);
+            this.ClientSize = new System.Drawing.Size(338, 218);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.codeTxt);
             this.Controls.Add(this.codeLbl);
             this.Controls.Add(this.backBtn);
@@ -93,5 +107,6 @@
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Label codeLbl;
         private System.Windows.Forms.TextBox codeTxt;
+        private System.Windows.Forms.Label errorLbl;
     }
 }

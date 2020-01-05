@@ -51,6 +51,7 @@
             this.leaderboardsListBox.Name = "leaderboardsListBox";
             this.leaderboardsListBox.Size = new System.Drawing.Size(522, 340);
             this.leaderboardsListBox.TabIndex = 1;
+            this.leaderboardsListBox.Click += new System.EventHandler(this.leaderboardsListBox_Click);
             // 
             // addLeaderboardBtn
             // 

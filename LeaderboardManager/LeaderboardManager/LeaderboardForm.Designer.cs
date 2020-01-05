@@ -44,6 +44,7 @@
             this.addBtn.TabIndex = 0;
             this.addBtn.Text = "ADD";
             this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // editBtn
             // 
@@ -54,6 +55,7 @@
             this.editBtn.TabIndex = 1;
             this.editBtn.Text = "EDIT";
             this.editBtn.UseVisualStyleBackColor = true;
+            this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
             // 
             // deleteBtn
             // 
@@ -64,6 +66,7 @@
             this.deleteBtn.TabIndex = 2;
             this.deleteBtn.Text = "DELETE";
             this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // leaderboardDataGridView
             // 

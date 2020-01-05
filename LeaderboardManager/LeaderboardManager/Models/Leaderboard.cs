@@ -14,10 +14,11 @@ namespace LeaderboardManager.Models
         public string Key { get; set; }
         public CrypotAlgo Algorithm { get; set; }
         public string Format { get; set; }
+        public List<Entry> Entries { get; set; }
 
         public override string ToString()
         {
-            return Name;
+            return Id.ToString() + ": " + Name;
         }
     }
 }
