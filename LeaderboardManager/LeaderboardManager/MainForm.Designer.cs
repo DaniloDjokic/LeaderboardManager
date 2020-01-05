@@ -61,6 +61,7 @@
             this.addLeaderboardBtn.TabIndex = 2;
             this.addLeaderboardBtn.Text = "ADD";
             this.addLeaderboardBtn.UseVisualStyleBackColor = true;
+            this.addLeaderboardBtn.Click += new System.EventHandler(this.addLeaderboardBtn_Click);
             // 
             // MainForm
             // 

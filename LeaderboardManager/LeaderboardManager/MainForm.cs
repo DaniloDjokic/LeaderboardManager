@@ -15,6 +15,19 @@ namespace LeaderboardManager
         public MainForm()
         {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init()
+        {
+            //Pull all leaderboards from DB
+            leaderboardsListBox.DataSource = MockData.leaderboards;
+        }
+
+        private void addLeaderboardBtn_Click(object sender, EventArgs e)
+        {
+            AddForm addForm = new AddForm();
+            addForm.ShowDialog();
         }
     }
 }

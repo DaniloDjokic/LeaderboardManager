@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.passwordTxt = new System.Windows.Forms.TextBox();
             this.keyTxt = new System.Windows.Forms.TextBox();
@@ -38,6 +39,8 @@
             this.algorithmDropdown = new System.Windows.Forms.ComboBox();
             this.confirmBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
+            this.errorLbl = new System.Windows.Forms.Label();
+            this.formatTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -112,28 +115,41 @@
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(54, 265);
+            this.confirmBtn.Location = new System.Drawing.Point(54, 319);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(142, 42);
             this.confirmBtn.TabIndex = 9;
             this.confirmBtn.Text = "CONFIRM";
             this.confirmBtn.UseVisualStyleBackColor = true;
+            this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
             // 
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(252, 265);
+            this.backBtn.Location = new System.Drawing.Point(252, 319);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(142, 42);
             this.backBtn.TabIndex = 10;
             this.backBtn.Text = "BACK";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLbl.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLbl.Location = new System.Drawing.Point(49, 254);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(0, 29);
+            this.errorLbl.TabIndex = 11;
             // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 332);
+            this.ClientSize = new System.Drawing.Size(443, 382);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.algorithmDropdown);
@@ -163,5 +179,7 @@
         private System.Windows.Forms.ComboBox algorithmDropdown;
         private System.Windows.Forms.Button confirmBtn;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Label errorLbl;
+        private System.Windows.Forms.ToolTip formatTooltip;
     }
 }
