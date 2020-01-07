@@ -7,22 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LeaderboardManager.Models;
 
 namespace LeaderboardManager
 {
     public partial class MainForm : Form
     {
+		DBService database = new DBService();
         public MainForm()
         {
             InitializeComponent();
             Init();
+			/*List<Entry> entries = new List<Entry>();
+			entries.Add(new Entry()
+			{
+				Id = 1, Name = "Bagomos", Points = 10, Message = "Penjos"
+			});
+            database.AddNewLeaderboard(new Leaderboard()
+            {
+				Id = 1,
+				Name = "Lol",
+				Algorithm = CryptoAlgo.AES,
+				Password = "kek",
+				Format = "xd",
+				Entries = entries,
+				Key = "joj"
+            });*/
         }
 
         private void Init()
         {
-            //Pull all leaderboards from DB
-            leaderboardsListBox.DataSource = MockData.leaderboards;
-        }
+			//Pull all leaderboards from DB
+			List<Leaderboard> result = database.GetAllLeaderboards();
+			leaderboardsListBox.DataSource = result;
+		}
 
         private void addLeaderboardBtn_Click(object sender, EventArgs e)
         {
@@ -33,7 +51,8 @@ namespace LeaderboardManager
         private void leaderboardsListBox_Click(object sender, EventArgs e)
         {
             int index = this.leaderboardsListBox.IndexFromPoint((e as MouseEventArgs).Location);
-            LeaderboardForm form = new LeaderboardForm(MockData.leaderboards[index]);
+            Leaderboard leaderboard = database.GetLeaderboardById(index+1);
+			LeaderboardForm form = new LeaderboardForm(leaderboard);
             form.ShowDialog();
         }
     }

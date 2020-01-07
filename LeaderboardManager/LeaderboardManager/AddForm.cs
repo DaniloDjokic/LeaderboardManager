@@ -17,8 +17,8 @@ namespace LeaderboardManager
         {
             InitializeComponent();
 
-            algorithmDropdown.DataSource = Enum.GetValues(typeof(CrypotAlgo));
-            algorithmDropdown.SelectedItem = CrypotAlgo.RC4;
+            algorithmDropdown.DataSource = Enum.GetValues(typeof(CryptoAlgo));
+            algorithmDropdown.SelectedItem = CryptoAlgo.RC4;
 
             formatTooltip.InitialDelay = 20;
             formatTooltip.SetToolTip(formatTxt, "Text for tooltip");
@@ -30,7 +30,7 @@ namespace LeaderboardManager
 
             passwordTxt.Text = leaderboard.Password;
             keyTxt.Text = leaderboard.Key;
-            algorithmDropdown.DataSource = Enum.GetValues(typeof(CrypotAlgo));
+            algorithmDropdown.DataSource = Enum.GetValues(typeof(CryptoAlgo));
             algorithmDropdown.SelectedItem = leaderboard.Algorithm;
             formatTxt.Text = leaderboard.Format;
 

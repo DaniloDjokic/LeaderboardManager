@@ -8,11 +8,11 @@ namespace LeaderboardManager.Models
 {
     public class Leaderboard
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Key { get; set; }
-        public CrypotAlgo Algorithm { get; set; }
+        public CryptoAlgo Algorithm { get; set; }
         public string Format { get; set; }
         public List<Entry> Entries { get; set; }
 
