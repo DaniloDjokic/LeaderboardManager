@@ -51,9 +51,23 @@ namespace LeaderboardManager
         private void leaderboardsListBox_Click(object sender, EventArgs e)
         {
             int index = this.leaderboardsListBox.IndexFromPoint((e as MouseEventArgs).Location);
-            Leaderboard leaderboard = database.GetLeaderboardById(index+1);
-			LeaderboardForm form = new LeaderboardForm(leaderboard);
-            form.ShowDialog();
+
+            if (index != -1)
+            {
+                Leaderboard leaderboard = database.GetLeaderboardById(index + 1);
+
+                if (leaderboard != null)
+                {
+                    LeaderboardForm form = new LeaderboardForm(leaderboard);
+                    form.ShowDialog();
+
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Selected leaderboard doesn't exist.");
+                }
+            }
         }
     }
 }

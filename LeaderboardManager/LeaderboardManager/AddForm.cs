@@ -21,7 +21,7 @@ namespace LeaderboardManager
             algorithmDropdown.SelectedItem = CryptoAlgo.RC4;
 
             formatTooltip.InitialDelay = 20;
-            formatTooltip.SetToolTip(formatTxt, "Text for tooltip");
+            formatTooltip.SetToolTip(label4, "Click on label for help.");
         }
 
         public AddForm(Leaderboard leaderboard)
@@ -35,7 +35,7 @@ namespace LeaderboardManager
             formatTxt.Text = leaderboard.Format;
 
             formatTooltip.InitialDelay = 20;
-            formatTooltip.SetToolTip(formatTxt, "Text for tooltip");
+            formatTooltip.SetToolTip(label4, "Click on label for help.");
         }
 
         private bool ValidateInputs()
@@ -45,7 +45,7 @@ namespace LeaderboardManager
                 DisplayError("Password is empty");
                 return false;
             }
-            if(keyTxt.Text == "")
+            if(!ValidateKey())
             {
                 DisplayError("Key is empty");
                 return false;
@@ -55,18 +55,18 @@ namespace LeaderboardManager
                 DisplayError("Format is empty");
                 return false;
             }
-            if (!ValidateFormat())
+            if (!Formatter.ValidateFormat(formatTxt.Text))
             {
-                DisplayError("Format is not in the correct format");
+                DisplayError("Format string is not formated correctly.");
                 return false;
             }
             return true;
         }
 
-        private bool ValidateFormat()
+        private bool ValidateKey()
         {
-            //TODO add format validation
-            return true;
+            CryptionService cryptionService = new CryptionService((CryptoAlgo) algorithmDropdown.SelectedItem);
+            return cryptionService.ValidateKey(keyTxt.Text);
         }
 
         private void DisplayError(string text)
@@ -86,6 +86,11 @@ namespace LeaderboardManager
         private void backBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Formatter.FormatHelp, "Format help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

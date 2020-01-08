@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace LeaderboardManager
 {
-    public enum CryptoAlgo { RC4, AES }
-
     public static class MockData
     {
         public static List<Leaderboard> leaderboards = new List<Leaderboard>();

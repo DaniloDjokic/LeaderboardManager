@@ -105,7 +105,9 @@
     <Compile Include="AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CryptionService.cs" />
     <Compile Include="DBService.cs" />
+    <Compile Include="Formatter.cs" />
     <Compile Include="LeaderboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
