@@ -37,28 +37,30 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 9);
+            this.label1.Location = new System.Drawing.Point(40, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(419, 48);
+            this.label1.Size = new System.Drawing.Size(344, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "LeaderboardManager";
             // 
             // leaderboardsListBox
             // 
             this.leaderboardsListBox.FormattingEnabled = true;
-            this.leaderboardsListBox.ItemHeight = 16;
-            this.leaderboardsListBox.Location = new System.Drawing.Point(12, 77);
+            this.leaderboardsListBox.Location = new System.Drawing.Point(9, 63);
+            this.leaderboardsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.leaderboardsListBox.Name = "leaderboardsListBox";
-            this.leaderboardsListBox.Size = new System.Drawing.Size(522, 340);
+            this.leaderboardsListBox.Size = new System.Drawing.Size(392, 277);
             this.leaderboardsListBox.TabIndex = 1;
             this.leaderboardsListBox.Click += new System.EventHandler(this.leaderboardsListBox_Click);
             // 
             // addLeaderboardBtn
             // 
             this.addLeaderboardBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLeaderboardBtn.Location = new System.Drawing.Point(157, 423);
+            this.addLeaderboardBtn.Location = new System.Drawing.Point(118, 344);
+            this.addLeaderboardBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addLeaderboardBtn.Name = "addLeaderboardBtn";
-            this.addLeaderboardBtn.Size = new System.Drawing.Size(216, 53);
+            this.addLeaderboardBtn.Size = new System.Drawing.Size(162, 43);
             this.addLeaderboardBtn.TabIndex = 2;
             this.addLeaderboardBtn.Text = "ADD";
             this.addLeaderboardBtn.UseVisualStyleBackColor = true;
@@ -66,12 +68,13 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 488);
+            this.ClientSize = new System.Drawing.Size(418, 396);
             this.Controls.Add(this.addLeaderboardBtn);
             this.Controls.Add(this.leaderboardsListBox);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "Main";
             this.ResumeLayout(false);

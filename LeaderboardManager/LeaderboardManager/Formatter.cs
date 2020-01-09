@@ -21,11 +21,14 @@ namespace LeaderboardManager
 
         public static bool ValidateFormat(string format)
         {
+            if (string.IsNullOrWhiteSpace(format))
+                return false;
+
             //TODO add format validation
             return true;
         }
 
-        public static UserInfo Parse(string input)
+        public static bool TryParse(string input, string format, out UserInfo userInfo)
         {
             throw new NotImplementedException();
         }

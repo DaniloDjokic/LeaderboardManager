@@ -10,44 +10,55 @@ namespace LeaderboardManager
 {
 	class DBService
 	{
-		private readonly RedisManagerPool _redisManager = new RedisManagerPool("localhost:6379");
+		//Reworked to comply with Redis recommended usage principles
+		private static readonly Lazy<RedisManagerPool> _redisManager = new Lazy<RedisManagerPool>(() => { return new RedisManagerPool("localhost:6379"); });
 
 		public void AddNewLeaderboard(Leaderboard leaderboard)
 		{
-			IRedisClient redis = _redisManager.GetClient();
-			var leaderboards = redis.As<Leaderboard>();
-			leaderboard.Id = leaderboards.GetNextSequence();
-			leaderboards.Store(leaderboard);
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				leaderboard.Id = leaderboards.GetNextSequence();
+				leaderboards.Store(leaderboard);
+			}
 		}
 
 		public void UpdateLeaderboard(Leaderboard leaderboard)
 		{
-			IRedisClient redis = _redisManager.GetClient();
-			var leaderboards = redis.As<Leaderboard>();
-			leaderboards.Store(leaderboard);
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				leaderboards.Store(leaderboard);
+			}
 		}
 
 		public List<Leaderboard> GetAllLeaderboards()
 		{
-			IRedisClient redis = _redisManager.GetClient();
-			var leaderboards = redis.As<Leaderboard>();
-			IList<Leaderboard> result = leaderboards.GetAll();
-			return (List<Leaderboard>) result;
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				IList<Leaderboard> result = leaderboards.GetAll();
+				return (List<Leaderboard>)result;
+			}
 		}
 
 		public Leaderboard GetLeaderboardById(long id)
 		{
-			IRedisClient redis = _redisManager.GetClient();
-			var leaderboards = redis.As<Leaderboard>();
-			Leaderboard result = leaderboards.GetById(id);
-			return result;
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				Leaderboard result = leaderboards.GetById(id);
+				return result;
+			}
 		}
 
 		public void DeleteLeaderboardById(long id)
 		{
-			IRedisClient redis = _redisManager.GetClient();
-			var leaderboards = redis.As<Leaderboard>();
-			leaderboards.DeleteById(id);
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				leaderboards.DeleteById(id);
+			}
 		}
 	}
 }

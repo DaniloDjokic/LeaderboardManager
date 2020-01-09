@@ -13,6 +13,7 @@ namespace LeaderboardManager
 {
     public partial class LeaderboardForm : Form
     {
+        private DBService dbService;
         private Leaderboard leaderboard;
 
         public LeaderboardForm(Leaderboard leaderboard)
@@ -20,6 +21,7 @@ namespace LeaderboardManager
             InitializeComponent();
 
             this.leaderboard = leaderboard;
+            this.dbService = new DBService();
 
             leaderboardDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             leaderboardDataGridView.AllowUserToAddRows = false;
@@ -28,20 +30,53 @@ namespace LeaderboardManager
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            AuthForm form = new AuthForm(false);
-            form.ShowDialog();
+            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck))
+            {
+                authForm.ShowDialog();
+
+                if (authForm.PassedCheck)
+                {
+                    //Add entry to leaderboard
+                }
+            }
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            AddForm form = new AddForm(leaderboard);
-            form.ShowDialog();
+            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck, leaderboard.Password))
+            {
+                authForm.ShowDialog();
+
+                if (authForm.PassedCheck)
+                {
+                    using (AddForm form = new AddForm(leaderboard))
+                    {
+                        form.ShowDialog();
+                    }
+                }
+            }
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            AuthForm form = new AuthForm(true);
-            form.ShowDialog();
+            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck, leaderboard.Password))
+            {
+                authForm.ShowDialog();
+
+                if (authForm.PassedCheck)
+                {
+                    try
+                    {
+                        dbService.DeleteLeaderboardById(leaderboard.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Couldn't delete the leaderboard: {ex.Message}", "Delete error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    this.Close();
+                }
+            }
         }
     }
 }

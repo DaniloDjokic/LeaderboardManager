@@ -1,29 +1,59 @@
-﻿using System;
+﻿using LeaderboardManager.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LeaderboardManager
 {
+    public enum AuthFormFunction
+    {
+        PasswordCheck,
+        InputCheck
+    }
+
     public partial class AuthForm : Form
     {
-        bool isDeleteForm;
+        byte[] HashedPassword;
+        AuthFormFunction function;
+        SHA1 sha1;
 
-        public AuthForm(bool isDeleteForm)
+        public bool PassedCheck { get; private set; }
+        public UserInfo ParsedCode { get; private set; }
+
+
+        public AuthForm(AuthFormFunction authFormFunction, byte[] hashedPassword = null)
         {
             InitializeComponent();
 
-            this.isDeleteForm = isDeleteForm;
+            PassedCheck = false;
 
-            if (isDeleteForm)
-                codeLbl.Text = "Password";
-            else
-                codeLbl.Text = "Code";
+            this.function = authFormFunction;
+
+            this.HashedPassword = hashedPassword;
+
+            switch (function)
+            {
+                case AuthFormFunction.PasswordCheck:
+                    codeLbl.Text = "Password";
+                    if (hashedPassword == null || hashedPassword.Length != 20)
+                    {
+                        throw new ArgumentException();
+                    }
+                    sha1 = new SHA1CryptoServiceProvider();
+                    break;
+                case AuthFormFunction.InputCheck:
+                    codeLbl.Text = "Code";
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -34,7 +64,31 @@ namespace LeaderboardManager
         private bool ValidateInput()
         {
             //TODO Check input in database
+            //If input is good, put it in UserInfo
+
+            switch (function)
+            {
+                case AuthFormFunction.PasswordCheck:
+                    return ValidatePassword();
+                case AuthFormFunction.InputCheck:
+                    return ValidateCode();
+                default:
+                    break;
+            }
+
             return true;
+        }
+
+        private bool ValidateCode()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool ValidatePassword()
+        {
+            byte[] hashInput = sha1.ComputeHash(Encoding.UTF8.GetBytes(codeTxt.Text));
+
+            return HashedPassword.SequenceEqual(hashInput);
         }
 
         private void DisplayError(string text)
@@ -46,14 +100,8 @@ namespace LeaderboardManager
         {
             if (ValidateInput())
             {
-                if(isDeleteForm)
-                {
-                    //Delete leaderboard
-                }
-                else
-                {
-                    //Add entry to leaderboard 
-                }
+                PassedCheck = true;
+
                 this.Close();
             }
             else

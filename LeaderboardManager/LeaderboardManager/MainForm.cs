@@ -37,15 +37,16 @@ namespace LeaderboardManager
 
         private void Init()
         {
-			//Pull all leaderboards from DB
-			List<Leaderboard> result = database.GetAllLeaderboards();
-			leaderboardsListBox.DataSource = result;
+            RefreshList();
 		}
 
         private void addLeaderboardBtn_Click(object sender, EventArgs e)
         {
-            AddForm addForm = new AddForm();
-            addForm.ShowDialog();
+            using (AddForm addForm = new AddForm())
+            {
+                addForm.ShowDialog();
+                RefreshList();
+            }
         }
 
         private void leaderboardsListBox_Click(object sender, EventArgs e)
@@ -58,8 +59,11 @@ namespace LeaderboardManager
 
                 if (leaderboard != null)
                 {
-                    LeaderboardForm form = new LeaderboardForm(leaderboard);
-                    form.ShowDialog();
+                    using (LeaderboardForm form = new LeaderboardForm(leaderboard))
+                    {
+                        form.ShowDialog();
+                        RefreshList();
+                    }
 
                     return;
                 }
@@ -68,6 +72,13 @@ namespace LeaderboardManager
                     MessageBox.Show("Selected leaderboard doesn't exist.");
                 }
             }
+        }
+
+        private void RefreshList()
+        {
+            //Pull all leaderboards from DB
+            List<Leaderboard> result = database.GetAllLeaderboards();
+            leaderboardsListBox.DataSource = result;
         }
     }
 }

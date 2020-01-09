@@ -10,11 +10,16 @@ namespace LeaderboardManager.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public string Password { get; set; }
-        public string Key { get; set; }
+        public byte[] Password { get; set; }
+        public KeyIVPair KeyIVPair { get; set; }
         public CryptoAlgo Algorithm { get; set; }
         public string Format { get; set; }
         public List<Entry> Entries { get; set; }
+
+        public Leaderboard()
+        {
+            Entries = new List<Entry>();
+        }
 
         public override string ToString()
         {
