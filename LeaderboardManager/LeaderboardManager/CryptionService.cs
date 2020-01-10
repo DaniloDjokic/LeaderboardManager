@@ -67,28 +67,41 @@ namespace LeaderboardManager
 
         public byte[] EncryptData(byte[] data)
         {
-            //ICryptoTransform encryptor = crypter.CreateEncryptor();
+            byte[] result;
+            ICryptoTransform encryptor = crypter.CreateEncryptor();
 
-            //// Create the streams used for encryption.
-            //using (MemoryStream msEncrypt = new MemoryStream())
-            //{
-            //    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-            //    {
-            //        csEncrypt.Write(data, 0, data.Length);
-            //        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-            //        {
-            //            //Write all data to the stream.
-            //            swEncrypt.Write(plainText);
-            //        }
-            //        encrypted = msEncrypt.ToArray();
-            //    }
-            //}
-            throw new NotImplementedException();
+            // Create the streams used for encryption.
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    csEncrypt.Write(data, 0, data.Length);
+                    csEncrypt.FlushFinalBlock();
+
+                    result = msEncrypt.ToArray();
+                }
+            }
+
+            return result;
         }
 
         public byte[] Decrypt(byte[] encryptedData)
         {
-            throw new NotImplementedException();
+            byte[] result;
+            ICryptoTransform decryptor = crypter.CreateDecryptor();
+
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, decryptor, CryptoStreamMode.Write))
+                {
+                    csEncrypt.Write(encryptedData, 0, encryptedData.Length);
+                    csEncrypt.FlushFinalBlock();
+
+                    result = msEncrypt.ToArray();
+                }
+            }
+
+            return result;
         }
 
     }
