@@ -10,8 +10,11 @@ namespace LeaderboardManager
 {
     public class KeyIVPair
     {
-        public byte[] Key;
-        public byte[] IV;
+        public byte[] Key { get; set; }
+        public byte[] IV { get; set; }
+
+        public KeyIVPair()
+        { }
 
         public KeyIVPair(byte[] key, byte[] iv)
         {
