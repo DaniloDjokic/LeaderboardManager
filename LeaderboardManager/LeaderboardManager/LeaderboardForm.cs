@@ -25,19 +25,24 @@ namespace LeaderboardManager
 
             leaderboardDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             leaderboardDataGridView.AllowUserToAddRows = false;
-            leaderboardDataGridView.DataSource = leaderboard.Entries;
+            leaderboardDataGridView.DataSource = dbService.GetEntries(leaderboard.Name).ToList();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck))
+            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck, leaderboard.Password))
             {
                 authForm.ShowDialog();
 
                 if (authForm.PassedCheck)
                 {
-                    //Add entry to leaderboard
+	                //code for testing db functionalities
+	                dbService.AddNewEntry(leaderboard, new Entry()
+	                {
+		                Id = 2, Message = "Lol", Name = "Kek", Points = 21
+	                });
                 }
+				RefreshList();
             }
         }
 
@@ -78,5 +83,10 @@ namespace LeaderboardManager
                 }
             }
         }
+
+        private void RefreshList()
+        {
+	        leaderboardDataGridView.DataSource = dbService.GetEntries(leaderboard.Name).ToList();
+		}
     }
 }

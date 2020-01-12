@@ -8,7 +8,7 @@ namespace LeaderboardManager.Models
 {
     public class Entry
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public double Points { get; set; }
         public string Message { get; set; }

@@ -14,12 +14,6 @@ namespace LeaderboardManager.Models
         public KeyIVPair KeyIVPair { get; set; }
         public CryptoAlgo Algorithm { get; set; }
         public string Format { get; set; }
-        public List<Entry> Entries { get; set; }
-
-        public Leaderboard()
-        {
-            Entries = new List<Entry>();
-        }
 
         public override string ToString()
         {

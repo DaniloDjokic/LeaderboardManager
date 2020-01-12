@@ -18,21 +18,6 @@ namespace LeaderboardManager
         {
             InitializeComponent();
             Init();
-			/*List<Entry> entries = new List<Entry>();
-			entries.Add(new Entry()
-			{
-				Id = 1, Name = "Bagomos", Points = 10, Message = "Penjos"
-			});
-            database.AddNewLeaderboard(new Leaderboard()
-            {
-				Id = 1,
-				Name = "Lol",
-				Algorithm = CryptoAlgo.AES,
-				Password = "kek",
-				Format = "xd",
-				Entries = entries,
-				Key = "joj"
-            });*/
         }
 
         private void Init()
@@ -55,7 +40,7 @@ namespace LeaderboardManager
 
             if (index != -1)
             {
-                Leaderboard leaderboard = database.GetLeaderboardById(index + 1);
+                Leaderboard leaderboard = database.GetLeaderboardById(database.GetAllLeaderboards()[index].Id);
 
                 if (leaderboard != null)
                 {
