@@ -45,6 +45,7 @@
             this.ivLbl = new System.Windows.Forms.Label();
             this.keyTxt = new System.Windows.Forms.TextBox();
             this.ivTxt = new System.Windows.Forms.TextBox();
+            this.disclaimerLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +110,7 @@
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(53, 319);
+            this.confirmBtn.Location = new System.Drawing.Point(53, 377);
             this.confirmBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(141, 42);
@@ -121,7 +122,7 @@
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(252, 319);
+            this.backBtn.Location = new System.Drawing.Point(252, 377);
             this.backBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(141, 42);
@@ -200,11 +201,23 @@
             this.ivTxt.Size = new System.Drawing.Size(175, 22);
             this.ivTxt.TabIndex = 17;
             // 
+            // disclaimerLbl
+            // 
+            this.disclaimerLbl.AutoSize = true;
+            this.disclaimerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disclaimerLbl.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.disclaimerLbl.Location = new System.Drawing.Point(49, 315);
+            this.disclaimerLbl.Name = "disclaimerLbl";
+            this.disclaimerLbl.Size = new System.Drawing.Size(340, 29);
+            this.disclaimerLbl.TabIndex = 18;
+            this.disclaimerLbl.Text = "Key and IV are utf-8 encoded";
+            // 
             // AddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 382);
+            this.ClientSize = new System.Drawing.Size(443, 430);
+            this.Controls.Add(this.disclaimerLbl);
             this.Controls.Add(this.ivTxt);
             this.Controls.Add(this.keyTxt);
             this.Controls.Add(this.ivLbl);
@@ -246,5 +259,6 @@
         private System.Windows.Forms.Label ivLbl;
         private System.Windows.Forms.TextBox keyTxt;
         private System.Windows.Forms.TextBox ivTxt;
+        private System.Windows.Forms.Label disclaimerLbl;
     }
 }

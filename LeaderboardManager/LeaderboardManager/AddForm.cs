@@ -29,6 +29,7 @@ namespace LeaderboardManager
             ivTxt.Visible = false;
             keyLbl.Visible = false;
             ivLbl.Visible = false;
+            disclaimerLbl.Visible = false;
         }
 
         public AddForm(Leaderboard leaderboard)
