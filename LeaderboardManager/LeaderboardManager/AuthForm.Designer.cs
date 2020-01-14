@@ -38,7 +38,7 @@
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(12, 102);
+            this.confirmBtn.Location = new System.Drawing.Point(12, 158);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(131, 51);
             this.confirmBtn.TabIndex = 0;
@@ -49,7 +49,7 @@
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(184, 102);
+            this.backBtn.Location = new System.Drawing.Point(184, 158);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(132, 51);
             this.backBtn.TabIndex = 1;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 173);
+            this.ClientSize = new System.Drawing.Size(338, 221);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.codeTxt);
             this.Controls.Add(this.codeLbl);
