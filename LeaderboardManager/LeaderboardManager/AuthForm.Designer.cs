@@ -38,7 +38,7 @@
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(12, 155);
+            this.confirmBtn.Location = new System.Drawing.Point(12, 102);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(131, 51);
             this.confirmBtn.TabIndex = 0;
@@ -49,7 +49,7 @@
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(194, 155);
+            this.backBtn.Location = new System.Drawing.Point(184, 102);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(132, 51);
             this.backBtn.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             this.codeLbl.AutoSize = true;
             this.codeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.codeLbl.Location = new System.Drawing.Point(51, 37);
+            this.codeLbl.Location = new System.Drawing.Point(12, 37);
             this.codeLbl.Name = "codeLbl";
             this.codeLbl.Size = new System.Drawing.Size(92, 29);
             this.codeLbl.TabIndex = 2;
@@ -69,9 +69,9 @@
             // 
             // codeTxt
             // 
-            this.codeTxt.Location = new System.Drawing.Point(194, 44);
+            this.codeTxt.Location = new System.Drawing.Point(159, 44);
             this.codeTxt.Name = "codeTxt";
-            this.codeTxt.Size = new System.Drawing.Size(122, 22);
+            this.codeTxt.Size = new System.Drawing.Size(157, 22);
             this.codeTxt.TabIndex = 3;
             // 
             // errorLbl
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 218);
+            this.ClientSize = new System.Drawing.Size(338, 173);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.codeTxt);
             this.Controls.Add(this.codeLbl);

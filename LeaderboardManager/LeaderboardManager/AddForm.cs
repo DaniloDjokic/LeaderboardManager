@@ -24,6 +24,11 @@ namespace LeaderboardManager
 
             formatTooltip.InitialDelay = 20;
             formatTooltip.SetToolTip(label4, "Click on label for help.");
+
+            keyTxt.Visible = false;
+            ivTxt.Visible = false;
+            keyLbl.Visible = false;
+            ivLbl.Visible = false;
         }
 
         public AddForm(Leaderboard leaderboard)
@@ -32,8 +37,12 @@ namespace LeaderboardManager
 
             selectedLeaderboard = leaderboard;
 
-            //Treba da se ubaci i za Key i za IV
-            //keyTxt.Text = leaderboard.Key;
+            nameTxt.Text = leaderboard.Name;
+            passwordTxt.Text = Encoding.UTF8.GetString(leaderboard.Password, 0, leaderboard.Password.Length);
+
+            keyTxt.Text = Encoding.UTF8.GetString(leaderboard.KeyIVPair.Key, 0, leaderboard.KeyIVPair.Key.Length);
+            ivTxt.Text = Encoding.UTF8.GetString(leaderboard.KeyIVPair.IV, 0, leaderboard.KeyIVPair.IV.Length);
+
             algorithmDropdown.DataSource = Enum.GetValues(typeof(CryptoAlgo));
             algorithmDropdown.SelectedItem = leaderboard.Algorithm;
             formatTxt.Text = leaderboard.Format;
@@ -118,6 +127,16 @@ namespace LeaderboardManager
         private void label4_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Formatter.FormatHelp, "Format help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void algorithmDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
