@@ -65,6 +65,43 @@ namespace LeaderboardManager
             }
         }
 
+        public CryptionService(CryptoAlgo chosenAlgo, byte[] key, byte[] iv)
+        {
+            ChosenAlgo = chosenAlgo;
+
+            switch (ChosenAlgo)
+            {
+                case CryptoAlgo.AES:
+                    crypter = new AesManaged();
+                    break;
+                case CryptoAlgo.DES:
+                    crypter = new TripleDESCryptoServiceProvider();
+                    break;
+                case CryptoAlgo.RC2:
+                    crypter = new RC2CryptoServiceProvider();
+                    break;
+                case CryptoAlgo.Rijndael:
+                    crypter = new RijndaelManaged();
+                    break;
+                case CryptoAlgo.TripleDES:
+                    crypter = new TripleDESCryptoServiceProvider();
+                    break;
+                default:
+                    break;
+            }
+
+            if (crypter != null)
+            {
+                crypter.Key = key;
+                crypter.IV = iv;
+                KeyIVPair = new KeyIVPair(key, iv);
+            }
+            else
+            {
+                throw new Exception("Initialization failed.");
+            }
+        }
+
         public byte[] EncryptData(byte[] data)
         {
             byte[] result;

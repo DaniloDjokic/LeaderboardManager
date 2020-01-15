@@ -30,17 +30,26 @@ namespace LeaderboardManager
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            using (AuthForm authForm = new AuthForm(AuthFormFunction.PasswordCheck, leaderboard.Password))
+            CryptionService cryptionService = new CryptionService(leaderboard.Algorithm, leaderboard.KeyIVPair.Key, leaderboard.KeyIVPair.IV);
+            using (AuthForm authForm = new AuthForm(AuthFormFunction.InputCheck, format: leaderboard.Format, cryptionService: cryptionService))
             {
                 authForm.ShowDialog();
 
                 if (authForm.PassedCheck)
                 {
-	                //code for testing db functionalities
-	                dbService.AddNewEntry(leaderboard, new Entry()
-	                {
-		                Id = 2, Message = "Lol", Name = "Kek", Points = 21
-	                });
+                    try
+                    {
+                        dbService.AddNewEntry(leaderboard, new Entry()
+                        {
+                            Message = authForm.ParsedCode.comment,
+                            Name = authForm.ParsedCode.name,
+                            Points = authForm.ParsedCode.value
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Couldn't add new entry: {ex.Message}", "New entry error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 				RefreshList();
             }

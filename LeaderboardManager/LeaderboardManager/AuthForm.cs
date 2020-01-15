@@ -23,20 +23,23 @@ namespace LeaderboardManager
         byte[] HashedPassword;
         AuthFormFunction function;
         SHA1 sha1;
+        CryptionService cryptionService;
+        string format;
 
         public bool PassedCheck { get; private set; }
         public UserInfo ParsedCode { get; private set; }
 
 
-        public AuthForm(AuthFormFunction authFormFunction, byte[] hashedPassword = null)
+        public AuthForm(AuthFormFunction authFormFunction, byte[] hashedPassword = null, string format = null, CryptionService cryptionService = null)
         {
             InitializeComponent();
 
             PassedCheck = false;
 
             this.function = authFormFunction;
-
+            this.format = format;
             this.HashedPassword = hashedPassword;
+            this.cryptionService = cryptionService;
 
             switch (function)
             {
@@ -50,6 +53,10 @@ namespace LeaderboardManager
                     break;
                 case AuthFormFunction.InputCheck:
                     codeLbl.Text = "Code";
+                    if (format == null || cryptionService == null)
+                    {
+                        throw new ArgumentException();
+                    }
                     break;
                 default:
                     break;
@@ -63,9 +70,6 @@ namespace LeaderboardManager
 
         private bool ValidateInput()
         {
-            //TODO Check input in database
-            //If input is good, put it in UserInfo
-
             switch (function)
             {
                 case AuthFormFunction.PasswordCheck:
@@ -81,7 +85,22 @@ namespace LeaderboardManager
 
         private bool ValidateCode()
         {
-            throw new NotImplementedException();
+            try
+            {
+                byte[] decryptedInput = cryptionService.Decrypt(Encoding.UTF8.GetBytes(codeTxt.Text));
+                string code = Encoding.UTF8.GetString(decryptedInput);
+
+                UserInfo userInfo = Formatter.Parse(code, format);
+
+                ParsedCode = userInfo;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error while parsing code", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private bool ValidatePassword()
