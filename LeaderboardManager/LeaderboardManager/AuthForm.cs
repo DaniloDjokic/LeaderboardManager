@@ -87,7 +87,7 @@ namespace LeaderboardManager
         {
             try
             {
-                byte[] decryptedInput = cryptionService.Decrypt(Encoding.UTF8.GetBytes(codeTxt.Text));
+                byte[] decryptedInput = cryptionService.DecryptData(Encoding.UTF8.GetBytes(codeTxt.Text));
                 string code = Encoding.UTF8.GetString(decryptedInput);
 
                 UserInfo userInfo = Formatter.Parse(code, format);

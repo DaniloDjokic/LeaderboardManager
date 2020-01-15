@@ -41,58 +41,58 @@
             this.formatTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.keyLbl = new System.Windows.Forms.Label();
-            this.ivLbl = new System.Windows.Forms.Label();
-            this.keyTxt = new System.Windows.Forms.TextBox();
-            this.ivTxt = new System.Windows.Forms.TextBox();
-            this.disclaimerLbl = new System.Windows.Forms.Label();
+            this.settingsDumpBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.buttonSettingsDump = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(49, 60);
+            this.label1.Location = new System.Drawing.Point(37, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 29);
+            this.label1.Size = new System.Drawing.Size(98, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Password";
             // 
             // passwordTxt
             // 
-            this.passwordTxt.Location = new System.Drawing.Point(219, 66);
-            this.passwordTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.passwordTxt.Location = new System.Drawing.Point(164, 54);
+            this.passwordTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.PasswordChar = '*';
-            this.passwordTxt.Size = new System.Drawing.Size(175, 22);
+            this.passwordTxt.Size = new System.Drawing.Size(132, 20);
             this.passwordTxt.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(48, 109);
+            this.label3.Location = new System.Drawing.Point(36, 89);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 29);
+            this.label3.Size = new System.Drawing.Size(94, 25);
             this.label3.TabIndex = 4;
             this.label3.Text = "Algorithm";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // formatTxt
             // 
-            this.formatTxt.Location = new System.Drawing.Point(218, 168);
-            this.formatTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.formatTxt.Location = new System.Drawing.Point(164, 136);
+            this.formatTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.formatTxt.Name = "formatTxt";
-            this.formatTxt.Size = new System.Drawing.Size(175, 22);
+            this.formatTxt.Size = new System.Drawing.Size(132, 20);
             this.formatTxt.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(48, 161);
+            this.label4.Location = new System.Drawing.Point(36, 131);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 29);
+            this.label4.Size = new System.Drawing.Size(73, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Format";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -100,20 +100,20 @@
             // algorithmDropdown
             // 
             this.algorithmDropdown.FormattingEnabled = true;
-            this.algorithmDropdown.Location = new System.Drawing.Point(218, 114);
-            this.algorithmDropdown.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.algorithmDropdown.Location = new System.Drawing.Point(164, 93);
+            this.algorithmDropdown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.algorithmDropdown.Name = "algorithmDropdown";
-            this.algorithmDropdown.Size = new System.Drawing.Size(175, 24);
+            this.algorithmDropdown.Size = new System.Drawing.Size(132, 21);
             this.algorithmDropdown.TabIndex = 8;
             this.algorithmDropdown.SelectedIndexChanged += new System.EventHandler(this.algorithmDropdown_SelectedIndexChanged);
             // 
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(53, 377);
-            this.confirmBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.confirmBtn.Location = new System.Drawing.Point(40, 306);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(141, 42);
+            this.confirmBtn.Size = new System.Drawing.Size(106, 34);
             this.confirmBtn.TabIndex = 9;
             this.confirmBtn.Text = "CONFIRM";
             this.confirmBtn.UseVisualStyleBackColor = true;
@@ -122,10 +122,10 @@
             // backBtn
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backBtn.Location = new System.Drawing.Point(252, 377);
-            this.backBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.backBtn.Location = new System.Drawing.Point(189, 306);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(141, 42);
+            this.backBtn.Size = new System.Drawing.Size(106, 34);
             this.backBtn.TabIndex = 10;
             this.backBtn.Text = "BACK";
             this.backBtn.UseVisualStyleBackColor = true;
@@ -136,9 +136,10 @@
             this.errorLbl.AutoSize = true;
             this.errorLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLbl.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLbl.Location = new System.Drawing.Point(49, 254);
+            this.errorLbl.Location = new System.Drawing.Point(37, 206);
+            this.errorLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.errorLbl.Name = "errorLbl";
-            this.errorLbl.Size = new System.Drawing.Size(0, 29);
+            this.errorLbl.Size = new System.Drawing.Size(0, 25);
             this.errorLbl.TabIndex = 11;
             // 
             // formatTooltip
@@ -147,81 +148,41 @@
             // 
             // nameTxt
             // 
-            this.nameTxt.Location = new System.Drawing.Point(219, 17);
-            this.nameTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nameTxt.Location = new System.Drawing.Point(164, 14);
+            this.nameTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nameTxt.Name = "nameTxt";
-            this.nameTxt.Size = new System.Drawing.Size(175, 22);
+            this.nameTxt.Size = new System.Drawing.Size(132, 20);
             this.nameTxt.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(49, 11);
+            this.label5.Location = new System.Drawing.Point(37, 9);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 29);
+            this.label5.Size = new System.Drawing.Size(64, 25);
             this.label5.TabIndex = 12;
             this.label5.Text = "Name";
             // 
-            // keyLbl
+            // buttonSettingsDump
             // 
-            this.keyLbl.AutoSize = true;
-            this.keyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyLbl.Location = new System.Drawing.Point(48, 215);
-            this.keyLbl.Name = "keyLbl";
-            this.keyLbl.Size = new System.Drawing.Size(57, 29);
-            this.keyLbl.TabIndex = 14;
-            this.keyLbl.Text = "Key";
-            // 
-            // ivLbl
-            // 
-            this.ivLbl.AutoSize = true;
-            this.ivLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ivLbl.Location = new System.Drawing.Point(48, 267);
-            this.ivLbl.Name = "ivLbl";
-            this.ivLbl.Size = new System.Drawing.Size(36, 29);
-            this.ivLbl.TabIndex = 15;
-            this.ivLbl.Text = "IV";
-            // 
-            // keyTxt
-            // 
-            this.keyTxt.Location = new System.Drawing.Point(218, 222);
-            this.keyTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.keyTxt.Name = "keyTxt";
-            this.keyTxt.ReadOnly = true;
-            this.keyTxt.Size = new System.Drawing.Size(175, 22);
-            this.keyTxt.TabIndex = 16;
-            // 
-            // ivTxt
-            // 
-            this.ivTxt.Location = new System.Drawing.Point(218, 274);
-            this.ivTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ivTxt.Name = "ivTxt";
-            this.ivTxt.ReadOnly = true;
-            this.ivTxt.Size = new System.Drawing.Size(175, 22);
-            this.ivTxt.TabIndex = 17;
-            // 
-            // disclaimerLbl
-            // 
-            this.disclaimerLbl.AutoSize = true;
-            this.disclaimerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disclaimerLbl.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.disclaimerLbl.Location = new System.Drawing.Point(49, 315);
-            this.disclaimerLbl.Name = "disclaimerLbl";
-            this.disclaimerLbl.Size = new System.Drawing.Size(340, 29);
-            this.disclaimerLbl.TabIndex = 18;
-            this.disclaimerLbl.Text = "Key and IV are utf-8 encoded";
+            this.buttonSettingsDump.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSettingsDump.Location = new System.Drawing.Point(174, 177);
+            this.buttonSettingsDump.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSettingsDump.Name = "buttonSettingsDump";
+            this.buttonSettingsDump.Size = new System.Drawing.Size(106, 34);
+            this.buttonSettingsDump.TabIndex = 14;
+            this.buttonSettingsDump.Text = "Dump cryption settings";
+            this.buttonSettingsDump.UseVisualStyleBackColor = true;
+            this.buttonSettingsDump.Click += new System.EventHandler(this.buttonSettingsDump_Click);
             // 
             // AddForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 430);
-            this.Controls.Add(this.disclaimerLbl);
-            this.Controls.Add(this.ivTxt);
-            this.Controls.Add(this.keyTxt);
-            this.Controls.Add(this.ivLbl);
-            this.Controls.Add(this.keyLbl);
+            this.ClientSize = new System.Drawing.Size(332, 349);
+            this.Controls.Add(this.buttonSettingsDump);
             this.Controls.Add(this.nameTxt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.errorLbl);
@@ -233,7 +194,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddForm";
             this.Text = "AddForm";
             this.ResumeLayout(false);
@@ -255,10 +216,7 @@
         private System.Windows.Forms.ToolTip formatTooltip;
         private System.Windows.Forms.TextBox nameTxt;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label keyLbl;
-        private System.Windows.Forms.Label ivLbl;
-        private System.Windows.Forms.TextBox keyTxt;
-        private System.Windows.Forms.TextBox ivTxt;
-        private System.Windows.Forms.Label disclaimerLbl;
+        private System.Windows.Forms.FolderBrowserDialog settingsDumpBrowserDialog;
+        private System.Windows.Forms.Button buttonSettingsDump;
     }
 }

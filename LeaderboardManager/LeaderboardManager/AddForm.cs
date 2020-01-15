@@ -15,6 +15,7 @@ namespace LeaderboardManager
     public partial class AddForm : Form
     {
         public Leaderboard selectedLeaderboard = null;
+        private CryptionService cryptionService = null;
         public AddForm()
         {
             InitializeComponent();
@@ -25,11 +26,8 @@ namespace LeaderboardManager
             formatTooltip.InitialDelay = 20;
             formatTooltip.SetToolTip(label4, "Click on label for help.");
 
-            keyTxt.Visible = false;
-            ivTxt.Visible = false;
-            keyLbl.Visible = false;
-            ivLbl.Visible = false;
-            disclaimerLbl.Visible = false;
+            buttonSettingsDump.Visible = false;
+            buttonSettingsDump.Enabled = false;
         }
 
         public AddForm(Leaderboard leaderboard)
@@ -41,8 +39,7 @@ namespace LeaderboardManager
             nameTxt.Text = leaderboard.Name;
             passwordTxt.Text = Encoding.UTF8.GetString(leaderboard.Password, 0, leaderboard.Password.Length);
 
-            keyTxt.Text = Encoding.UTF8.GetString(leaderboard.KeyIVPair.Key, 0, leaderboard.KeyIVPair.Key.Length);
-            ivTxt.Text = Encoding.UTF8.GetString(leaderboard.KeyIVPair.IV, 0, leaderboard.KeyIVPair.IV.Length);
+            cryptionService = new CryptionService(leaderboard.Algorithm, leaderboard.KeyIVPair.Key, leaderboard.KeyIVPair.IV);
 
             algorithmDropdown.DataSource = Enum.GetValues(typeof(CryptoAlgo));
             algorithmDropdown.SelectedItem = leaderboard.Algorithm;
@@ -138,6 +135,24 @@ namespace LeaderboardManager
         private void algorithmDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonSettingsDump_Click(object sender, EventArgs e)
+        {
+            if (settingsDumpBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string finalPath = System.IO.Path.Combine(settingsDumpBrowserDialog.SelectedPath, selectedLeaderboard.Name);
+                    cryptionService.DumpSettingsToFile(finalPath);
+
+                    MessageBox.Show($"Cryption settings dumped to file at: {finalPath}", "Settings dump successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error dumping settings file: {ex.Message}", "Settings dump failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

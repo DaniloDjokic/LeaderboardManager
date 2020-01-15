@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeaderboardManager
+namespace Encrypter
 {
     static class Program
     {
@@ -15,12 +14,9 @@ namespace LeaderboardManager
         [STAThread]
         static void Main()
         {
-
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new Encrypter());
         }
     }
 }
