@@ -41,7 +41,7 @@ namespace Encrypter
         {
             if (!string.IsNullOrWhiteSpace(textBoxInput.Text) && cryptionService != null)
             {
-                textBoxResult.Text = Encoding.UTF8.GetString(cryptionService.EncryptData(Encoding.UTF8.GetBytes(textBoxInput.Text)));
+                textBoxResult.Text = Convert.ToBase64String(cryptionService.EncryptData(Encoding.UTF8.GetBytes(textBoxInput.Text)));
             }
         }
     }
