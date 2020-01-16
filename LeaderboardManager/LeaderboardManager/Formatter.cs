@@ -29,12 +29,13 @@ namespace LeaderboardManager
             public string nameDelimiter { get; set; }
             public string scoreDelimiter { get; set; }
             public string commentDelimiter { get; set; }
+            public List<Match> orderedMatches { get; set; }
 
             public void ParseDelimiters()
             {
                 try
                 {
-                    List<Match> orderedMatches = (new List<Match>() { nameMatch, scoreMatch, commentMatch }).OrderBy(m => m.Index).ToList();
+                    orderedMatches = (new List<Match>() { nameMatch, scoreMatch, commentMatch }).OrderBy(m => m.Index).ToList();
                     foreach (var match in orderedMatches)
                     {
                         int indexOf = orderedMatches.IndexOf(match);
@@ -101,13 +102,13 @@ namespace LeaderboardManager
                                                      value words will be replaced with coresponding values.
                                                      These keywords can only appear once and need to be seperated by at least one delimiter.";
 
-        private static string nameKeyword = "name:value";
-        private static string scoreKeyword = "score:value";
-        private static string commentKeyword = "comment:value";
+        private static readonly string nameKeyword = "name:value";
+        private static readonly string scoreKeyword = "score:value";
+        private static readonly string commentKeyword = "comment:value";
 
-        private static Regex rexName = new Regex(nameKeyword);
-        private static Regex rexScore = new Regex(scoreKeyword);
-        private static Regex rexComment = new Regex(commentKeyword);
+        private static readonly Regex rexName = new Regex(nameKeyword);
+        private static readonly Regex rexScore = new Regex(scoreKeyword);
+        private static readonly Regex rexComment = new Regex(commentKeyword);
 
         private static FormatInfo GenerateFormatInfo(string format)
         {
@@ -218,11 +219,10 @@ namespace LeaderboardManager
             UserInfo userInfo = new UserInfo();
 
             try
-            {
-                List<Match> orderedMatches = (new List<Match>() { formatInfo.nameMatch, formatInfo.scoreMatch, formatInfo.commentMatch }).OrderBy(m => m.Index).ToList();
-                foreach (var match in orderedMatches)
+            {               
+                foreach (var match in formatInfo.orderedMatches)
                 {
-                    int indexOf = orderedMatches.IndexOf(match);
+                    int indexOf = formatInfo.orderedMatches.IndexOf(match);
                     string searchStringInInput;
                     Regex rexInput;
                     Match inputMatch;
@@ -356,6 +356,57 @@ namespace LeaderboardManager
             }
         }
 
+        public static string GenerateFormattedString(string format, UserInfo userInfo)
+        {
+            FormatInfo formatInfo;
+            try
+            {
+                formatInfo = ParseFormat(format);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
+            if (userInfo.name == null || userInfo.comment == null)
+            {
+                throw new ArgumentNullException("Name and comment can't be null.");
+            }
+
+            string result = format;
+
+            foreach (var match in formatInfo.orderedMatches)
+            {
+                if (match == formatInfo.nameMatch)
+                {
+                    result = ReplaceFirst(result, ":value", userInfo.name);
+                    continue;
+                }
+
+                if (match == formatInfo.scoreMatch)
+                {
+                    result = ReplaceFirst(result, ":value", userInfo.value.ToString());
+                    continue;
+                }
+
+                if (match == formatInfo.commentMatch)
+                {
+                    result = ReplaceFirst(result, ":value", userInfo.comment);
+                    continue;
+                }
+            }
+
+            return result;
+        }
+
+        private static string ReplaceFirst(string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
+        }
     }
 }
