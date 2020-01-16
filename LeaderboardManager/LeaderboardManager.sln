@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaderboardManager", "Leade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encrypter", "Encrypter\Encrypter.csproj", "{1BD9188C-7EDE-41FF-9CAD-35E5A63EEA14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaderboardManagerClientLibrary", "LeaderboardManagerClientLibrary\LeaderboardManagerClientLibrary.csproj", "{AE2E2B52-B4C6-44B1-A096-08DB711F8194}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1BD9188C-7EDE-41FF-9CAD-35E5A63EEA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BD9188C-7EDE-41FF-9CAD-35E5A63EEA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BD9188C-7EDE-41FF-9CAD-35E5A63EEA14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE2E2B52-B4C6-44B1-A096-08DB711F8194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE2E2B52-B4C6-44B1-A096-08DB711F8194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE2E2B52-B4C6-44B1-A096-08DB711F8194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE2E2B52-B4C6-44B1-A096-08DB711F8194}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

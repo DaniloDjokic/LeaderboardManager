@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace LeaderboardManager
+namespace LeaderboardManagerClientLibrary
 {
     public struct UserInfo
     {
-        public string name { get; set; }
-        public double value { get; set; }
-        public string comment { get; set; }
+        public string Name { get; set; }
+        public double Score { get; set; }
+        public string Comment { get; set; }
     }
 
     public static class Formatter
@@ -19,72 +19,72 @@ namespace LeaderboardManager
         private class FormatInfo
         {
 
-            public string format { get; set; }
-            public Match nameMatch { get; set; }
-            public Match scoreMatch { get; set; }
-            public Match commentMatch { get; set; }
-            public int delimiterStartAfterNameIndex { get; set; }
-            public int delimiterStartAfterScoreIndex { get; set; }
-            public int delimiterStartAfterCommentIndex { get; set; }
-            public string nameDelimiter { get; set; }
-            public string scoreDelimiter { get; set; }
-            public string commentDelimiter { get; set; }
-            public List<Match> orderedMatches { get; set; }
+            public string Format { get; set; }
+            public Match NameMatch { get; set; }
+            public Match ScoreMatch { get; set; }
+            public Match CommentMatch { get; set; }
+            public int DelimiterStartAfterNameIndex { get; set; }
+            public int DelimiterStartAfterScoreIndex { get; set; }
+            public int DelimiterStartAfterCommentIndex { get; set; }
+            public string NameDelimiter { get; set; }
+            public string ScoreDelimiter { get; set; }
+            public string CommentDelimiter { get; set; }
+            public List<Match> OrderedMatches { get; set; }
 
             public void ParseDelimiters()
             {
                 try
                 {
-                    orderedMatches = (new List<Match>() { nameMatch, scoreMatch, commentMatch }).OrderBy(m => m.Index).ToList();
-                    foreach (var match in orderedMatches)
+                    OrderedMatches = (new List<Match>() { NameMatch, ScoreMatch, CommentMatch }).OrderBy(m => m.Index).ToList();
+                    foreach (var match in OrderedMatches)
                     {
-                        int indexOf = orderedMatches.IndexOf(match);
+                        int indexOf = OrderedMatches.IndexOf(match);
                         int delimiterLength;
 
-                        if (match == nameMatch)
+                        if (match == NameMatch)
                         {
-                            if (indexOf < (orderedMatches.Count - 1))
+                            if (indexOf < (OrderedMatches.Count - 1))
                             {
-                                delimiterLength = orderedMatches[indexOf + 1].Index - delimiterStartAfterNameIndex;
+                                delimiterLength = OrderedMatches[indexOf + 1].Index - DelimiterStartAfterNameIndex;
                             }
                             else
                             {
-                                delimiterLength = format.Length - delimiterStartAfterNameIndex;
+                                delimiterLength = Format.Length - DelimiterStartAfterNameIndex;
                             }
 
-                            nameDelimiter = format.Substring(delimiterStartAfterNameIndex, delimiterLength);
+                            NameDelimiter = Format.Substring(DelimiterStartAfterNameIndex, delimiterLength);
 
                             continue;
                         }
 
-                        if (match == scoreMatch)
+                        if (match == ScoreMatch)
                         {
-                            if (indexOf < (orderedMatches.Count - 1))
+                            if (indexOf < (OrderedMatches.Count - 1))
                             {
-                                delimiterLength = orderedMatches[indexOf + 1].Index - delimiterStartAfterScoreIndex;
+                                delimiterLength = OrderedMatches[indexOf + 1].Index - DelimiterStartAfterScoreIndex;
                             }
                             else
                             {
-                                delimiterLength = format.Length - delimiterStartAfterScoreIndex;
+                                delimiterLength = Format.Length - DelimiterStartAfterScoreIndex;
                             }
 
-                            scoreDelimiter = format.Substring(delimiterStartAfterScoreIndex, delimiterLength);
+                            ScoreDelimiter = Format.Substring(DelimiterStartAfterScoreIndex, delimiterLength);
 
                             continue;
                         }
 
-                        if (match == commentMatch)
+                        if (match == CommentMatch)
                         {
-                            if (indexOf < (orderedMatches.Count - 1))
+                            if (indexOf < (OrderedMatches.Count - 1))
                             {
-                                delimiterLength = orderedMatches[indexOf + 1].Index - delimiterStartAfterCommentIndex;
+                                delimiterLength = OrderedMatches[indexOf + 1].Index - DelimiterStartAfterCommentIndex;
                             }
                             else
                             {
-                                delimiterLength = format.Length - delimiterStartAfterCommentIndex;
+                                delimiterLength = Format.Length - DelimiterStartAfterCommentIndex;
                             }
 
-                            commentDelimiter = format.Substring(delimiterStartAfterCommentIndex, delimiterLength);
+                            CommentDelimiter = Format.Substring(DelimiterStartAfterCommentIndex, delimiterLength);
 
                             continue;
                         }
@@ -97,7 +97,7 @@ namespace LeaderboardManager
             }
         }
 
-        public static readonly string FormatHelp = @"The format will be used to parse the information that the user is supposed to input, after it has been decrypted.
+        public static string FormatHelp { get; } = @"The format will be used to parse the information that the user is supposed to input, after it has been decrypted.
                                                      A proper format needs to contain following keywords: name:value, score:value, comment:value . In the generated code,
                                                      value words will be replaced with coresponding values.
                                                      These keywords can only appear once and need to be seperated by at least one delimiter.";
@@ -116,14 +116,14 @@ namespace LeaderboardManager
                 return null;
 
             FormatInfo result = new FormatInfo();
-            result.format = format;
-            result.nameMatch = rexName.Match(format);
-            result.scoreMatch = rexScore.Match(format);
-            result.commentMatch = rexComment.Match(format);
+            result.Format = format;
+            result.NameMatch = rexName.Match(format);
+            result.ScoreMatch = rexScore.Match(format);
+            result.CommentMatch = rexComment.Match(format);
 
-            result.delimiterStartAfterNameIndex = result.nameMatch.Index + nameKeyword.Length;
-            result.delimiterStartAfterScoreIndex = result.scoreMatch.Index + scoreKeyword.Length;
-            result.delimiterStartAfterCommentIndex = result.commentMatch.Index + commentKeyword.Length;
+            result.DelimiterStartAfterNameIndex = result.NameMatch.Index + nameKeyword.Length;
+            result.DelimiterStartAfterScoreIndex = result.ScoreMatch.Index + scoreKeyword.Length;
+            result.DelimiterStartAfterCommentIndex = result.CommentMatch.Index + commentKeyword.Length;
 
             try
             {
@@ -149,32 +149,32 @@ namespace LeaderboardManager
                 }
 
                 //if any of the keywords is not found
-                if (!formatInfo.nameMatch.Success || !formatInfo.scoreMatch.Success || !formatInfo.commentMatch.Success)
+                if (!formatInfo.NameMatch.Success || !formatInfo.ScoreMatch.Success || !formatInfo.CommentMatch.Success)
                 {
                     throw new Exception("One of the keywords was not found.");
                 }
 
                 //if any of the keywords appears more than once
-                if (formatInfo.nameMatch.NextMatch().Success || formatInfo.scoreMatch.NextMatch().Success || formatInfo.commentMatch.NextMatch().Success)
+                if (formatInfo.NameMatch.NextMatch().Success || formatInfo.ScoreMatch.NextMatch().Success || formatInfo.CommentMatch.NextMatch().Success)
                 {
                     throw new Exception("One of the keywords appears more than once.");
                 }
 
 
                 //if any other keyword starts right after the name keyword without a delimiter
-                if (formatInfo.delimiterStartAfterNameIndex == formatInfo.scoreMatch.Index || formatInfo.delimiterStartAfterNameIndex == formatInfo.commentMatch.Index)
+                if (formatInfo.DelimiterStartAfterNameIndex == formatInfo.ScoreMatch.Index || formatInfo.DelimiterStartAfterNameIndex == formatInfo.CommentMatch.Index)
                 {
                     throw new Exception("No delimiter after the name keyword.");
                 }
 
                 //if any other keyword starts right after the score keyword without a delimiter
-                if (formatInfo.delimiterStartAfterScoreIndex == formatInfo.nameMatch.Index || formatInfo.delimiterStartAfterScoreIndex == formatInfo.commentMatch.Index)
+                if (formatInfo.DelimiterStartAfterScoreIndex == formatInfo.NameMatch.Index || formatInfo.DelimiterStartAfterScoreIndex == formatInfo.CommentMatch.Index)
                 {
                     throw new Exception("No delimiter after the score keyword.");
                 }
 
                 //if any other keyword starts right after the comment keyword without a delimiter
-                if (formatInfo.delimiterStartAfterCommentIndex == formatInfo.nameMatch.Index || formatInfo.delimiterStartAfterCommentIndex == formatInfo.scoreMatch.Index)
+                if (formatInfo.DelimiterStartAfterCommentIndex == formatInfo.NameMatch.Index || formatInfo.DelimiterStartAfterCommentIndex == formatInfo.ScoreMatch.Index)
                 {
                     throw new Exception("No delimiter after the comment keyword.");
                 }
@@ -220,16 +220,16 @@ namespace LeaderboardManager
 
             try
             {               
-                foreach (var match in formatInfo.orderedMatches)
+                foreach (var match in formatInfo.OrderedMatches)
                 {
-                    int indexOf = formatInfo.orderedMatches.IndexOf(match);
+                    int indexOf = formatInfo.OrderedMatches.IndexOf(match);
                     string searchStringInInput;
                     Regex rexInput;
                     Match inputMatch;
                     Regex rexDelimiter;
                     Match delimiterMatch;
 
-                    if (match == formatInfo.nameMatch)
+                    if (match == formatInfo.NameMatch)
                     {
                         searchStringInInput = "name:";
                         rexInput = new Regex(searchStringInInput);
@@ -242,9 +242,9 @@ namespace LeaderboardManager
 
                         int valueStart = inputMatch.Index + searchStringInInput.Length;
 
-                        if (!string.IsNullOrWhiteSpace(formatInfo.nameDelimiter))
+                        if (!string.IsNullOrWhiteSpace(formatInfo.NameDelimiter))
                         {
-                            rexDelimiter = new Regex(formatInfo.nameDelimiter);
+                            rexDelimiter = new Regex(formatInfo.NameDelimiter);
                             delimiterMatch = rexDelimiter.Match(input.Substring(valueStart));
 
                             if (!delimiterMatch.Success)
@@ -262,7 +262,7 @@ namespace LeaderboardManager
                         continue;
                     }
 
-                    if (match == formatInfo.scoreMatch)
+                    if (match == formatInfo.ScoreMatch)
                     {
                         searchStringInInput = "score:";
                         rexInput = new Regex(searchStringInInput);
@@ -275,9 +275,9 @@ namespace LeaderboardManager
 
                         int valueStart = inputMatch.Index + searchStringInInput.Length;
 
-                        if (!string.IsNullOrWhiteSpace(formatInfo.scoreDelimiter))
+                        if (!string.IsNullOrWhiteSpace(formatInfo.ScoreDelimiter))
                         {
-                            rexDelimiter = new Regex(formatInfo.scoreDelimiter);
+                            rexDelimiter = new Regex(formatInfo.ScoreDelimiter);
                             delimiterMatch = rexDelimiter.Match(input.Substring(valueStart));
 
                             if (!delimiterMatch.Success)
@@ -295,7 +295,7 @@ namespace LeaderboardManager
                         continue;
                     }
 
-                    if (match == formatInfo.commentMatch)
+                    if (match == formatInfo.CommentMatch)
                     {
                         searchStringInInput = "comment:";
                         rexInput = new Regex(searchStringInInput);
@@ -308,9 +308,9 @@ namespace LeaderboardManager
 
                         int valueStart = inputMatch.Index + searchStringInInput.Length;
 
-                        if (!string.IsNullOrWhiteSpace(formatInfo.commentDelimiter))
+                        if (!string.IsNullOrWhiteSpace(formatInfo.CommentDelimiter))
                         {
-                            rexDelimiter = new Regex(formatInfo.commentDelimiter);
+                            rexDelimiter = new Regex(formatInfo.CommentDelimiter);
                             delimiterMatch = rexDelimiter.Match(input.Substring(valueStart));
 
                             if (!delimiterMatch.Success)
@@ -344,9 +344,9 @@ namespace LeaderboardManager
                     throw new Exception("Couldn't parse comment.");
                 }
 
-                userInfo.name = foundName;
-                userInfo.value = scoreValue;
-                userInfo.comment = foundComment;
+                userInfo.Name = foundName;
+                userInfo.Score = scoreValue;
+                userInfo.Comment = foundComment;
 
                 return userInfo;
             }
@@ -368,30 +368,30 @@ namespace LeaderboardManager
                 throw e;
             }
 
-            if (userInfo.name == null || userInfo.comment == null)
+            if (userInfo.Name == null || userInfo.Comment == null)
             {
                 throw new ArgumentNullException("Name and comment can't be null.");
             }
 
             string result = format;
 
-            foreach (var match in formatInfo.orderedMatches)
+            foreach (var match in formatInfo.OrderedMatches)
             {
-                if (match == formatInfo.nameMatch)
+                if (match == formatInfo.NameMatch)
                 {
-                    result = ReplaceFirst(result, ":value", userInfo.name);
+                    result = ReplaceFirst(result, "value", userInfo.Name);
                     continue;
                 }
 
-                if (match == formatInfo.scoreMatch)
+                if (match == formatInfo.ScoreMatch)
                 {
-                    result = ReplaceFirst(result, ":value", userInfo.value.ToString());
+                    result = ReplaceFirst(result, "value", userInfo.Score.ToString());
                     continue;
                 }
 
-                if (match == formatInfo.commentMatch)
+                if (match == formatInfo.CommentMatch)
                 {
-                    result = ReplaceFirst(result, ":value", userInfo.comment);
+                    result = ReplaceFirst(result, "value", userInfo.Comment);
                     continue;
                 }
             }

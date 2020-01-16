@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace LeaderboardManager
+namespace LeaderboardManagerClientLibrary
 {
     public class KeyIVPair
     {
         public byte[] Key { get; set; }
         public byte[] IV { get; set; }
-
-        public KeyIVPair()
-        { }
-
         public KeyIVPair(byte[] key, byte[] iv)
         {
             Key = key;
             IV = iv;
         }
     }
-    public enum CryptoAlgo { RC2, AES, Rijndael, DES, TripleDES}
+    public enum CryptoAlgo { RC2, AES, Rijndael, DES, TripleDES }
     public class CryptionService
     {
         public KeyIVPair KeyIVPair { get; private set; }
@@ -64,7 +60,6 @@ namespace LeaderboardManager
                 throw new Exception("Initialization failed.");
             }
         }
-
         public CryptionService(CryptoAlgo chosenAlgo, byte[] key, byte[] iv)
         {
             ChosenAlgo = chosenAlgo;
@@ -101,7 +96,6 @@ namespace LeaderboardManager
                 throw new Exception("Initialization failed.");
             }
         }
-
         public CryptionService(string settingsFilePath)
         {
             try
@@ -133,7 +127,6 @@ namespace LeaderboardManager
 
             return result;
         }
-
         public byte[] DecryptData(byte[] encryptedData)
         {
             byte[] result;
@@ -169,11 +162,10 @@ namespace LeaderboardManager
                     binaryWriter.Write(KeyIVPair.Key.Length);
                     binaryWriter.Write(KeyIVPair.Key);
                     binaryWriter.Write(KeyIVPair.IV.Length);
-                    binaryWriter.Write(KeyIVPair.IV);                 
+                    binaryWriter.Write(KeyIVPair.IV);
                 }
             }
         }
-
         private void InitializeFromSettingsFile(string path)
         {
             if (!File.Exists(path))
