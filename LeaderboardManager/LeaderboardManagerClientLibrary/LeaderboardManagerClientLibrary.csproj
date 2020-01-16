@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="CryptionService.cs" />
     <Compile Include="Formatter.cs" />
+    <Compile Include="Models\KeyIVPair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\UserInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
