@@ -25,7 +25,7 @@ namespace LeaderboardManager
 
             leaderboardDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             leaderboardDataGridView.AllowUserToAddRows = false;
-            leaderboardDataGridView.DataSource = dbService.GetEntries(leaderboard.Name).ToList();
+            leaderboardDataGridView.DataSource = dbService.GetFullEntries(leaderboard.Id).ToList();
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace LeaderboardManager
 
         private void RefreshList()
         {
-	        leaderboardDataGridView.DataSource = dbService.GetEntries(leaderboard.Name).ToList();
+	        leaderboardDataGridView.DataSource = dbService.GetFullEntries(leaderboard.Id).ToList();
 		}
     }
 }

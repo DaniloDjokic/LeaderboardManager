@@ -82,17 +82,30 @@ namespace LeaderboardManager
 				entry.Id = entries.GetNextSequence();
 
 				leaderboards.StoreRelatedEntities(leaderboard.Id, entry);
-				redis.AddItemToSortedSet(leaderboard.Name, entry.Name, entry.Points);
+				redis.AddItemToSortedSet(leaderboard.Id.ToString(), entry.Name, entry.Points);
 				
 			}
 		}
 
-		public IDictionary<string, double> GetEntries(string leaderboardName)
+		public IDictionary<string, double> GetEntries(long leaderboardId)
 		{
 			using (IRedisClient redis = _redisManager.Value.GetClient())
 			{
-				IDictionary<string, double> entries = redis.GetRangeWithScoresFromSortedSetByHighestScore(leaderboardName, 0, Double.MaxValue);
+				IDictionary<string, double> entries = redis.GetRangeWithScoresFromSortedSetByHighestScore(leaderboardId.ToString(), 0, Double.MaxValue);
 				return entries;
+			}
+		}
+
+		public List<Entry> GetFullEntries(long leaderboardId)
+		{
+			using (IRedisClient redis = _redisManager.Value.GetClient())
+			{
+				var leaderboards = redis.As<Leaderboard>();
+				List<Entry> fullEntries = leaderboards.GetRelatedEntities<Entry>(leaderboardId);
+				IDictionary<string, double> entries = redis.GetRangeWithScoresFromSortedSetByHighestScore(leaderboardId.ToString(), 0, Double.MaxValue);
+				List<Entry> sortedEntries = fullEntries.OrderByDescending(e => e.Points).ToList();
+
+				return sortedEntries;
 			}
 		}
 	}
