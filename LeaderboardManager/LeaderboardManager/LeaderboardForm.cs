@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LeaderboardManagerClientLibrary;
 
 namespace LeaderboardManager
 {
@@ -41,9 +42,9 @@ namespace LeaderboardManager
                     {
                         dbService.AddNewEntry(leaderboard, new Entry()
                         {
-                            Message = authForm.ParsedCode.comment,
-                            Name = authForm.ParsedCode.name,
-                            Points = authForm.ParsedCode.value
+                            Message = authForm.ParsedCode.Comment,
+                            Name = authForm.ParsedCode.Name,
+                            Points = authForm.ParsedCode.Score
                         });
                     }
                     catch (Exception ex)

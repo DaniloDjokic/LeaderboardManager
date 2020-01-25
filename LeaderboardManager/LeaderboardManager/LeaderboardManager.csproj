@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LeaderboardManagerClientLibrary">
+      <HintPath>..\LeaderboardManagerClientLibrary\bin\Debug\LeaderboardManagerClientLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Pipelines.Sockets.Unofficial, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42ea0a778e13fbe2, processorArchitecture=MSIL">
       <HintPath>..\packages\Pipelines.Sockets.Unofficial.2.0.22\lib\net472\Pipelines.Sockets.Unofficial.dll</HintPath>
     </Reference>
@@ -105,9 +108,7 @@
     <Compile Include="AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CryptionService.cs" />
     <Compile Include="DBService.cs" />
-    <Compile Include="Formatter.cs" />
     <Compile Include="LeaderboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
